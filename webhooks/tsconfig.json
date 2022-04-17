@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist",
+    "moduleResolution": "node",
+    "module": "commonjs",
+    "target": "es6",
+    "allowJs": true,
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "inlineSources": true,
+    "types": ["node"],
+    "lib": [
+      "esnext",
+      "es2015.proxy"
+    ],
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "downlevelIteration": true,
+    "strictNullChecks": true,
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitReturns": true,
+    "strict": true,
+    "noUnusedLocals": true,
+    "strictPropertyInitialization": false,
+  },
+  "include": [
+    "./src/**/*"
+  ],
+  "exclude": [
+    ".git",
+    "deployment",
+    "node_modules",
+    "dist",
+    "coverage"
+  ]
+}
