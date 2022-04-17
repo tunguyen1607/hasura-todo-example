@@ -1,0 +1,45 @@
+version: "3.3"
+services:
+  database:
+    image: postgres:12
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: password
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  hasura:
+    depends_on:
+      - webhook
+#      database:
+#        condition: service_healthy
+    ports:
+      - 8888:8080
+    build:
+      context: ./hasura
+      dockerfile: Dockerfile
+    environment:
+      HASURA_GRAPHQL_DEV_MODE: "true"
+      HASURA_GRAPHQL_ENABLE_CONSOLE: "true"
+      HASURA_GRAPHQL_DATABASE_URL: "postgres://postgres:Tuantu123%40@45.32.120.55:5432/hasura"
+      ## enable debugging mode. It is recommended to disable this in production
+      HASURA_GRAPHQL_ENABLED_LOG_TYPES: startup, http-log, webhook-log, websocket-log, query-log
+      HASURA_GRAPHQL_ADMIN_SECRET: f3ccab3e8cb12b90fabf55eb276457cb9f9fabcc121783fe4335f677ed7a5f0bae
+      HASURA_GRAPHQL_AUTH_HOOK: http://webhook:8989/wh # for docker mac - https://hasura.io/docs/latest/graphql/core/guides/docker-networking.html#docker-networking
+      HASURA_GRAPHQL_AUTH_HOOK_MODE: GET
+    volumes:
+      - "./hasura/app/migrations:/hasura-migrations"
+      - "./hasura/app/metadata:/hasura-metadata"
+
+#  TODO: finish this
+  webhook:
+#    depends_on:
+#      hasura:
+#        condition: service_started
+    image: nodejs:14.16.1-alpine3.30
+    build:
+      context: ./webhooks
+      dockerfile: Dockerfile
