@@ -1,20 +1,18 @@
 import {Connection, createConnection} from "typeorm";
-import * as dotenv from "dotenv";
-dotenv.config();
 export async function createDB() {
     return new Promise<Connection>(function (resolve, reject) {
         createConnection({
                 "type": "postgres",
-                "host": "45.32.120.55",
+                "host": process.env.PG_HOST || 'localhost',
                 "port": 5432,
-                "username": "postgres",
-                "password": "Tuantu123@",
-                "database": "hasura",
+                "username": process.env.PG_USERNAME || 'postgress',
+                "password": process.env.PG_PASSWORD || '',
+                "database": process.env.PG_DATABASE || 'postgress',
                 "synchronize": false,
                 "logging": true,
                 "entities": [
-                    "src/entity/**/*",
-                    "dist/entity/**/*"
+                    // "dist/entity/**/*",
+                    process.env.ENTITY_PATH || "dist/entity/**/*"
                 ],
             }
         ).then(async (connection) => {

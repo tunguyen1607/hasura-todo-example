@@ -11,7 +11,6 @@ export async function wh(req: any, res: Response){
                 "X-Hasura-User-Id": isValidToken.id+'',
                 "X-Hasura-Is-Owner": "false",
             };
-            console.log(resData);
             res.json(resData);
         } else await res.status(401).json({msg: "Invalid token"});
     } catch (err) {

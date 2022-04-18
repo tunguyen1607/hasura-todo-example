@@ -10,9 +10,9 @@ services:
     environment:
       DB_MYSQL_NAME: hasura
       DB_MYSQL_PORT: 5432 # set to "false" to disable console
-      DB_MYSQL_HOST: 45.32.120.55
+      DB_MYSQL_HOST: 127.0.0.1
       DB_MYSQL_USER: postgres
-      DB_MYSQL_PASSWD: Tuantu123@
+      DB_MYSQL_PASSWD: postgres
   graphql-engine:
     image: hasura/graphql-engine:v2.0.0-alpha.10
     ports:
@@ -21,7 +21,7 @@ services:
     depends_on:
       - webhook
     environment:
-      HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:Tuantu123@@45.32.120.55:5432/hasura
+      HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:password@localhost:5432/hasura
       ## enable the console served by server
       HASURA_GRAPHQL_ENABLE_CONSOLE: "true" # set to "false" to disable console
       ## enable debugging mode. It is recommended to disable this in production

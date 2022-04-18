@@ -31,3 +31,14 @@ and updated, respectively.
 - webhooks server skeleton has been provided, please complete solution using the TypeScript language 
 - provide unit and integration tests
 - provide a working solution upon `docker-compose up`
+
+### My Work
+- Go to webhooks directory and change parameter for DB at .env, .env.dev, .env.product
+- Go to hasura directory and change parameter for DB at docker-compose.yaml
+- Run "npm run test" to check the code
+- CD out to the main project
+- sudo docker-compose build then sudo docker-compose up -d
+### Note
+- I change a bit about the permission of role user and add authen when call graphql
+- I take the user id as token to do CRUD for the `todo` table
+- Implement a webhook that writes to the `audit` table describing who/what/when changed at event controller.

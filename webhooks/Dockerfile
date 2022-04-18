@@ -10,6 +10,7 @@ WORKDIR /app
 COPY package*.json ./
 COPY tsconfig.json ./
 COPY ormconfig.json ./
+COPY .env.product ./.env
 # copy source code to /app/src folder
 COPY src /app/src
 
