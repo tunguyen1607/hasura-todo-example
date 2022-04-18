@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "outDir": "./dist",
+    "rootDirs": ["tests", "src"],
     "moduleResolution": "node",
     "module": "commonjs",
     "target": "es6",
@@ -8,7 +9,7 @@
     "esModuleInterop": true,
     "sourceMap": true,
     "inlineSources": true,
-    "types": ["node"],
+    "types": ["node", "jest"],
     "lib": [
       "esnext",
       "es2015.proxy"
@@ -21,10 +22,12 @@
     "noImplicitReturns": true,
     "strict": true,
     "noUnusedLocals": true,
-    "strictPropertyInitialization": false,
+    "strictPropertyInitialization": false
   },
   "include": [
-    "./src/**/*"
+    "./src/**/*",
+    "node_modules/@types/jest/index.d.ts",
+    "node_modules/@types/jest/index.d.ts"
   ],
   "exclude": [
     ".git",
